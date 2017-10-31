@@ -1,7 +1,7 @@
 // Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
-var logger = require("morgan");
+//var logger = require("morgan");
 var mongoose = require("mongoose");
 // Requiring our Note and Article models
 var Note = require("./models/Note.js");
@@ -12,13 +12,13 @@ var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
 
 // Use morgan and body parser with our app
-app.use(logger("dev"));
+//app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
   extended: false
 }));
@@ -37,7 +37,7 @@ var routes = require("./controllers/scraper_controller.js");
 
 app.use("/", routes);
 
-mongoose.connect("mongodb://heroku_gnzk5747:4d2121nhgnfbdl1pfirsdepk9n@ds125262.mlab.com:25262/heroku_gnzk5747");
+mongoose.connect("mongodb://localhost/news-scraperdb");
 
 var db = mongoose.connection;
 
